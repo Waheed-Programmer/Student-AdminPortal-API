@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using StudentAdminPortalAPI.Data;
 using StudentAdminPortalAPI.Model;
+using StudentAdminPortalAPI.ViewModel;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -38,7 +39,7 @@ namespace StudentAdminPortalAPI.Repository
             return await _applicationDbContext.Students.AnyAsync(x=>x.StudentId ==id);
         }
 
-        public async Task<Student> UpdateStudent(int id, Student student)
+        public async Task<Student> UpdateStudent(int id, updateStudentViewModel student)
         {
             var checkStudent = await _applicationDbContext.Students.Where(x => x.StudentId == id).FirstOrDefaultAsync();
             if (checkStudent != null)
@@ -47,8 +48,8 @@ namespace StudentAdminPortalAPI.Repository
                 checkStudent.StudentEmail = student.StudentEmail;
                 checkStudent.StudentContact = student.StudentContact;
                 checkStudent.GenderId = student.GenderId;
-                checkStudent.Address.PhysicalAddress = student.Address.PhysicalAddress;
-                checkStudent.Address.PostalAddress = student.Address.PostalAddress;
+                checkStudent.Address.PhysicalAddress = student.PhysicalAddress;
+                checkStudent.Address.PostalAddress = student.PostalAddress;
 
                 await _applicationDbContext.SaveChangesAsync();
                 return checkStudent;

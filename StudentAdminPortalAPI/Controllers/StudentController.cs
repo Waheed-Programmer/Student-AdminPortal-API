@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using StudentAdminPortalAPI.Model;
 using StudentAdminPortalAPI.Repository;
+using StudentAdminPortalAPI.ViewModel;
 using System.Threading.Tasks;
 
 namespace StudentAdminPortalAPI.Controllers
@@ -32,7 +33,7 @@ namespace StudentAdminPortalAPI.Controllers
         
         [HttpPut("[action]/{id}")]
         //[Route("GetListStudent")]
-        public async Task<IActionResult> updateStudent([FromRoute] int id, [FromBody] Student student )
+        public async Task<IActionResult> updateStudent([FromRoute] int id, [FromBody] updateStudentViewModel student )
         {
             if (await _studentRepository.Exists(id))
             {

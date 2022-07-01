@@ -1,4 +1,5 @@
 ﻿using StudentAdminPortalAPI.Model;
+using StudentAdminPortalAPI.ViewModel;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -10,6 +11,6 @@ namespace StudentAdminPortalAPI.Repository
         Task<Student> GetStudent(int id);
         Task<List<Gender>> GetAllGenderAsync();
         Task<bool> Exists(int id);
-        Task<Student> UpdateStudent(int id, Student student);
+        Task<Student> UpdateStudent(int id, updateStudentViewModel student);
     }
 }
