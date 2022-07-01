@@ -32,5 +32,33 @@ namespace StudentAdminPortalAPI.Repository
         {
             return await _applicationDbContext.Genders.ToListAsync();
         }
+
+        public async Task<bool> Exists(int id)
+        {
+            return await _applicationDbContext.Students.AnyAsync(x=>x.StudentId ==id);
+        }
+
+        public async Task<Student> UpdateStudent(int id, Student student)
+        {
+            var checkStudent = await _applicationDbContext.Students.Where(x => x.StudentId == id).FirstOrDefaultAsync();
+            if (checkStudent != null)
+            {
+                checkStudent.StudentName = student.StudentName;
+                checkStudent.StudentEmail = student.StudentEmail;
+                checkStudent.StudentContact = student.StudentContact;
+                checkStudent.GenderId = student.GenderId;
+                checkStudent.Address.PhysicalAddress = student.Address.PhysicalAddress;
+                checkStudent.Address.PostalAddress = student.Address.PostalAddress;
+
+                await _applicationDbContext.SaveChangesAsync();
+                return checkStudent;
+
+            }
+            return null;
+        
+        
+        
+        
+        }
     }
 }

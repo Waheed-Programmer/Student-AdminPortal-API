@@ -28,6 +28,12 @@ namespace StudentAdminPortalAPI.Controllers
         {
             return Ok(await _studentRepository.GetStudent(id)); 
         }
-
+        
+        [HttpPut("[action]/{id}")]
+        //[Route("GetListStudent")]
+        public async Task<IActionResult> updateStudent([FromRoute] )
+        {
+            return Ok(await _studentRepository.GetStudent(id));
+        }
     }
 }
