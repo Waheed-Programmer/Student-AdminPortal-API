@@ -48,9 +48,7 @@ namespace StudentAdminPortalAPI.Repository
                 checkStudent.StudentEmail = student.StudentEmail;
                 checkStudent.StudentContact = student.StudentContact;
                 checkStudent.GenderId = student.GenderId;
-                checkStudent.Address.PhysicalAddress = student.PhysicalAddress;
-                checkStudent.Address.PostalAddress = student.PostalAddress;
-
+                checkStudent.AddressId = student.AddressId;
                 await _applicationDbContext.SaveChangesAsync();
                 return checkStudent;
 

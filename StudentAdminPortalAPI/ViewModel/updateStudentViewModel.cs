@@ -7,7 +7,6 @@
         public string StudentContact { get; set; }
         public string ProfileImg { get; set; }
         public int GenderId { get; set; }
-        public string PhysicalAddress { get; set; }
-        public string PostalAddress { get; set; }
+        public int AddressId { get; set; }
     }
 }

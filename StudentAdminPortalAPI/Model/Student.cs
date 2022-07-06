@@ -9,6 +9,7 @@
         public string ProfileImg { get; set; }
         public int GenderId { get; set; }
         public Gender Gender { get; set; }
-        public Address Address { get; set; } = new Address();
+        public int AddressId { get; set; }
+        public Address Address { get; set; } 
     }
 }

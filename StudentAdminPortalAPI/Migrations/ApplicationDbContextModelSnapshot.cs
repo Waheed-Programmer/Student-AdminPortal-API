@@ -31,13 +31,7 @@ namespace StudentAdminPortalAPI.Migrations
                     b.Property<string>("PostalAddress")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("StudentId")
-                        .HasColumnType("int");
-
                     b.HasKey("AddressId");
-
-                    b.HasIndex("StudentId")
-                        .IsUnique();
 
                     b.ToTable("Address");
                 });
@@ -67,6 +61,9 @@ namespace StudentAdminPortalAPI.Migrations
                         .HasColumnType("int")
                         .UseIdentityColumn();
 
+                    b.Property<int>("AddressId")
+                        .HasColumnType("int");
+
                     b.Property<int>("GenderId")
                         .HasColumnType("int");
 
@@ -84,34 +81,30 @@ namespace StudentAdminPortalAPI.Migrations
 
                     b.HasKey("StudentId");
 
+                    b.HasIndex("AddressId");
+
                     b.HasIndex("GenderId");
 
                     b.ToTable("Students");
                 });
 
-            modelBuilder.Entity("StudentAdminPortalAPI.Model.Address", b =>
-                {
-                    b.HasOne("StudentAdminPortalAPI.Model.Student", null)
-                        .WithOne("Address")
-                        .HasForeignKey("StudentAdminPortalAPI.Model.Address", "StudentId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
             modelBuilder.Entity("StudentAdminPortalAPI.Model.Student", b =>
                 {
+                    b.HasOne("StudentAdminPortalAPI.Model.Address", "Address")
+                        .WithMany()
+                        .HasForeignKey("AddressId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("StudentAdminPortalAPI.Model.Gender", "Gender")
                         .WithMany()
                         .HasForeignKey("GenderId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Gender");
-                });
-
-            modelBuilder.Entity("StudentAdminPortalAPI.Model.Student", b =>
-                {
                     b.Navigation("Address");
+
+                    b.Navigation("Gender");
                 });
 #pragma warning restore 612, 618
         }
