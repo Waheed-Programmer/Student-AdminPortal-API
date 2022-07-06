@@ -12,6 +12,7 @@ namespace StudentAdminPortalAPI.Repository
         Task<List<Gender>> GetAllGenderAsync();
         Task<bool> Exists(int id);
         Task<Student> UpdateStudent(int id, updateStudentViewModel student);
+        Task<Student> InsertStudent(updateStudentViewModel student);
         Task<Student> DeleteStudentAsync(int id);
     }
 }

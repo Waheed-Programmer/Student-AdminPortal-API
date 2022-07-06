@@ -58,5 +58,19 @@ namespace StudentAdminPortalAPI.Controllers
             }
             return NotFound();
         }
+
+        [HttpPost("[action]")]
+        //[Route("GetListStudent")]
+        public async Task<IActionResult> addStudent([FromBody] updateStudentViewModel student)
+        {
+
+            var updateStudent = await _studentRepository.InsertStudent(student);
+            if (updateStudent != null)
+            {
+                return Ok(updateStudent);
+            }
+
+            return NotFound();
+        }
     }
 }

@@ -75,6 +75,20 @@ namespace StudentAdminPortalAPI.Repository
             }
             return null;
         }
+
+        public async Task<Student> InsertStudent(updateStudentViewModel student)
+        {
+            Student model = new Student();
+            model.StudentName = student.StudentName;
+            model.StudentEmail = student.StudentEmail;
+            model.StudentContact = student.StudentContact;
+            model.GenderId = student.GenderId;
+            model.AddressId = student.AddressId;
+            await _applicationDbContext.Students.AddAsync(model);
+            await _applicationDbContext.SaveChangesAsync();
+            return model;
+
+        }
     }
     }
 
