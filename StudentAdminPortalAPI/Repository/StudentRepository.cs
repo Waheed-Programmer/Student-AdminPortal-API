@@ -83,7 +83,11 @@ namespace StudentAdminPortalAPI.Repository
             model.StudentEmail = student.StudentEmail;
             model.StudentContact = student.StudentContact;
             model.GenderId = student.GenderId;
-            model.AddressId = student.AddressId;
+            model.Address = new Address
+            {
+                PhysicalAddress = student.PhysicalAddress,
+                PostalAddress = student.PostalAddress
+            };
             await _applicationDbContext.Students.AddAsync(model);
             await _applicationDbContext.SaveChangesAsync();
             return model;

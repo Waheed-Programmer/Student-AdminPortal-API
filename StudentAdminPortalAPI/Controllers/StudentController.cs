@@ -45,7 +45,7 @@ namespace StudentAdminPortalAPI.Controllers
         }
 
         [HttpDelete("[action]/{id}")]
-        //[Route("GetListStudent")]
+       
         public async Task<IActionResult> deleteStudent([FromRoute] int id)
         {
             if (await _studentRepository.Exists(id))
@@ -60,14 +60,14 @@ namespace StudentAdminPortalAPI.Controllers
         }
 
         [HttpPost("[action]")]
-        //[Route("GetListStudent")]
+       
         public async Task<IActionResult> addStudent([FromBody] updateStudentViewModel student)
         {
 
-            var updateStudent = await _studentRepository.InsertStudent(student);
-            if (updateStudent != null)
+            var newStudent = await _studentRepository.InsertStudent(student);
+            if (newStudent != null)
             {
-                return Ok(updateStudent);
+                return Ok(newStudent);
             }
 
             return NotFound();
