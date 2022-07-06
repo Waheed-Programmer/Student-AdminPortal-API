@@ -43,5 +43,20 @@ namespace StudentAdminPortalAPI.Controllers
             }
             return NotFound();
         }
+
+        [HttpDelete("[action]/{id}")]
+        //[Route("GetListStudent")]
+        public async Task<IActionResult> deleteStudent([FromRoute] int id)
+        {
+            if (await _studentRepository.Exists(id))
+            {
+                var delStudent = _studentRepository.DeleteStudentAsync(id);
+                if (delStudent != null)
+                {
+                    return Ok(delStudent);
+                }
+            }
+            return NotFound();
+        }
     }
 }
