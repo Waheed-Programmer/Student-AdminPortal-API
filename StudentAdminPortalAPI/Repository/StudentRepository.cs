@@ -62,10 +62,19 @@ namespace StudentAdminPortalAPI.Repository
             await _applicationDbContext.SaveChangesAsync();
               return checkStudent;
 
-        }        
-               
-        
-        
         }
+
+        public async Task<Student> DeleteStudentAsync(int id)
+        {
+            var student = await GetStudent(id);
+            if (student != null)
+            {
+                 _applicationDbContext.Students.Remove(student);
+                await _applicationDbContext.SaveChangesAsync();
+                return student;
+            }
+            return null;
+        }
+    }
     }
 
