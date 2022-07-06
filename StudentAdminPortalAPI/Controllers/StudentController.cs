@@ -1,6 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using StudentAdminPortalAPI.Model;
+﻿using Microsoft.AspNetCore.Mvc;
 using StudentAdminPortalAPI.Repository;
 using StudentAdminPortalAPI.ViewModel;
 using System.Threading.Tasks;

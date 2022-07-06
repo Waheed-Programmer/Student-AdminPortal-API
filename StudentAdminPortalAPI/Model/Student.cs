@@ -1,7 +1,10 @@
-﻿namespace StudentAdminPortalAPI.Model
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace StudentAdminPortalAPI.Model
 {
     public class Student
     {
+        [Key]
         public int StudentId { get; set; }
         public string StudentName { get; set; }
         public string StudentEmail { get; set; }

@@ -46,18 +46,26 @@ namespace StudentAdminPortalAPI.Repository
             {
                 checkStudent.StudentName = student.StudentName;
                 checkStudent.StudentEmail = student.StudentEmail;
-                checkStudent.StudentContact = student.StudentContact;
-                checkStudent.GenderId = student.GenderId;
-                checkStudent.AddressId = student.AddressId;
-                await _applicationDbContext.SaveChangesAsync();
-                return checkStudent;
-
+                checkStudent.StudentContact = student.StudentContact; 
             }
-            return null;
-        
-        
+            var Gender = await _applicationDbContext.Genders.Where(x => x.GenderId == student.GenderId).FirstOrDefaultAsync();
+            if (Gender != null)
+            {
+                checkStudent.Gender.GenderName = student.GenderName;            
+            }
+            var Address = await _applicationDbContext.Address.Where(x => x.AddressId == student.AddressId).FirstOrDefaultAsync();
+            if (Address != null)
+            {
+                checkStudent.Address.PhysicalAddress = student.PhysicalAddress;
+                checkStudent.Address.PostalAddress = student.PostalAddress;
+            }
+            await _applicationDbContext.SaveChangesAsync();
+              return checkStudent;
+
+        }        
+               
         
         
         }
     }
-}
+
