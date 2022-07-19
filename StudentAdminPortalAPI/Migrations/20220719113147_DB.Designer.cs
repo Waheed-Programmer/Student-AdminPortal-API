@@ -10,8 +10,8 @@ using StudentAdminPortalAPI.Data;
 namespace StudentAdminPortalAPI.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220719105819_Data")]
-    partial class Data
+    [Migration("20220719113147_DB")]
+    partial class DB
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -107,7 +107,7 @@ namespace StudentAdminPortalAPI.Migrations
 
             modelBuilder.Entity("StudentAdminPortalAPI.Model.Student", b =>
                 {
-                    b.HasOne("StudentAdminPortalAPI.Model.Country", "CountryName")
+                    b.HasOne("StudentAdminPortalAPI.Model.Country", "Country")
                         .WithMany()
                         .HasForeignKey("CountryId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -125,7 +125,7 @@ namespace StudentAdminPortalAPI.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("CountryName");
+                    b.Navigation("Country");
 
                     b.Navigation("Department");
 

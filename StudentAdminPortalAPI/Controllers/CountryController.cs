@@ -7,19 +7,19 @@ namespace StudentAdminPortalAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class DepartmentsController : ControllerBase
+    public class CountryController : ControllerBase
     {
         private readonly IStudentRepository _studentRepository;
 
-        public DepartmentsController(IStudentRepository studentRepository)
+        public CountryController(IStudentRepository studentRepository)
         {
             _studentRepository = studentRepository;
         }
 
         [HttpGet("[action]")]
-        public async Task<IActionResult> GetListDepartment()
+        public async Task<IActionResult> GetListCountry()
         {
-            return Ok(await _studentRepository.GetAllDepartmentAsync());
+            return Ok(await _studentRepository.GetAllCountryAsync());
         }
     }
 }

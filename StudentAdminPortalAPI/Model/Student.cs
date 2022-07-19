@@ -16,6 +16,6 @@ namespace StudentAdminPortalAPI.Model
         public int DepartmentId { get; set; }
         public Department Department { get; set; } 
         public int CountryId { get; set; }
-        public Country CountryName { get; set; } 
+        public Country Country { get; set; } 
     }
 }

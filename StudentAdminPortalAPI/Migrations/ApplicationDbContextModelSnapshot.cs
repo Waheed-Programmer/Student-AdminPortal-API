@@ -105,7 +105,7 @@ namespace StudentAdminPortalAPI.Migrations
 
             modelBuilder.Entity("StudentAdminPortalAPI.Model.Student", b =>
                 {
-                    b.HasOne("StudentAdminPortalAPI.Model.Country", "CountryName")
+                    b.HasOne("StudentAdminPortalAPI.Model.Country", "Country")
                         .WithMany()
                         .HasForeignKey("CountryId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -123,7 +123,7 @@ namespace StudentAdminPortalAPI.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("CountryName");
+                    b.Navigation("Country");
 
                     b.Navigation("Department");
 

@@ -53,12 +53,11 @@ namespace StudentAdminPortalAPI.Repository
             {
                 checkStudent.Gender.GenderName = student.GenderName;            
             }
-            //var department = await _applicationDbContext.Address.Where(x => x.AddressId == student.AddressId).FirstOrDefaultAsync();
-            //if (Address != null)
-            //{
-            //    checkStudent.Address.PhysicalAddress = student.PhysicalAddress;
-            //    checkStudent.Address.PostalAddress = student.PostalAddress;
-            //}
+            var country = await _applicationDbContext.Countries.Where(x => x.CountryId == student.CountryId).FirstOrDefaultAsync();
+            if (country != null)
+            {
+                //country.CountryName = student.CountryName;
+            }
             await _applicationDbContext.SaveChangesAsync();
               return checkStudent;
 
@@ -84,6 +83,7 @@ namespace StudentAdminPortalAPI.Repository
             model.StudentContact = student.StudentContact;
             model.GenderId = student.GenderId;
             model.DepartmentId = student.DepartmentId;
+            model.CountryId = student.CountryId;
             await _applicationDbContext.Students.AddAsync(model);
             await _applicationDbContext.SaveChangesAsync();
             return model;
@@ -93,6 +93,11 @@ namespace StudentAdminPortalAPI.Repository
         public async Task<List<Department>> GetAllDepartmentAsync()
         {
             return await _applicationDbContext.Departments.ToListAsync();
+        }
+
+        public async Task<List<Country>> GetAllCountryAsync()
+        {
+            return await _applicationDbContext.Countries.ToListAsync();
         }
     }
     }
