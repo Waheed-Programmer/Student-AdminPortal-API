@@ -1,4 +1,6 @@
-﻿namespace StudentAdminPortalAPI.ViewModel
+﻿using StudentAdminPortalAPI.Model;
+
+namespace StudentAdminPortalAPI.ViewModel
 {
     public class updateStudentViewModel
     {
@@ -8,9 +10,11 @@
         public string StudentContact { get; set; }
         public string ProfileImg { get; set; }
         public int GenderId { get; set; }
-        public string GenderName { get; set; }       
-        public int AddressId { get; set; }
-        public string PhysicalAddress { get; set; }
-        public string PostalAddress { get; set; }
+        public string GenderName { get; set; }
+        public int DepartmentId { get; set; }
+        public Department Department { get; set; }
+        public int CountryId { get; set; }
+        public Country CountryName { get; set; }
+
     }
 }

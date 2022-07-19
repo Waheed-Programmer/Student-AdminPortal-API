@@ -21,13 +21,13 @@ namespace StudentAdminPortalAPI.Repository
         public async Task<List<Student>> GetAllStudentAsync()
         {
             return await _applicationDbContext.Students
-                .Include(nameof(Gender)).Include(nameof(Address)).ToListAsync();
+                .Include(nameof(Gender)).Include(nameof(Department)).ToListAsync();
         }
 
         public async Task<Student> GetStudent(int id)
         {
             return await _applicationDbContext.Students.Where(x=>x.StudentId==id)
-                .Include(nameof(Gender)).Include(nameof(Address)).FirstOrDefaultAsync();
+                .Include(nameof(Gender)).Include(nameof(Department)).FirstOrDefaultAsync();
         }
         public async Task<List<Gender>> GetAllGenderAsync()
         {
@@ -53,12 +53,12 @@ namespace StudentAdminPortalAPI.Repository
             {
                 checkStudent.Gender.GenderName = student.GenderName;            
             }
-            var Address = await _applicationDbContext.Address.Where(x => x.AddressId == student.AddressId).FirstOrDefaultAsync();
-            if (Address != null)
-            {
-                checkStudent.Address.PhysicalAddress = student.PhysicalAddress;
-                checkStudent.Address.PostalAddress = student.PostalAddress;
-            }
+            //var department = await _applicationDbContext.Address.Where(x => x.AddressId == student.AddressId).FirstOrDefaultAsync();
+            //if (Address != null)
+            //{
+            //    checkStudent.Address.PhysicalAddress = student.PhysicalAddress;
+            //    checkStudent.Address.PostalAddress = student.PostalAddress;
+            //}
             await _applicationDbContext.SaveChangesAsync();
               return checkStudent;
 
@@ -83,11 +83,7 @@ namespace StudentAdminPortalAPI.Repository
             model.StudentEmail = student.StudentEmail;
             model.StudentContact = student.StudentContact;
             model.GenderId = student.GenderId;
-            model.Address = new Address
-            {
-                PhysicalAddress = student.PhysicalAddress,
-                PostalAddress = student.PostalAddress
-            };
+            model.DepartmentId = student.DepartmentId;
             await _applicationDbContext.Students.AddAsync(model);
             await _applicationDbContext.SaveChangesAsync();
             return model;

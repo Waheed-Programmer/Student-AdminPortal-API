@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace StudentAdminPortalAPI.Model
 {
@@ -9,10 +10,12 @@ namespace StudentAdminPortalAPI.Model
         public string StudentName { get; set; }
         public string StudentEmail { get; set; }
         public string StudentContact { get; set; }
-        public string ProfileImg { get; set; }
+        public DateTime Date { get; set; } = DateTime.Now;
         public int GenderId { get; set; }
         public Gender Gender { get; set; }
-        public int AddressId { get; set; }
-        public Address Address { get; set; } 
+        public int DepartmentId { get; set; }
+        public Department Department { get; set; } 
+        public int CountryId { get; set; }
+        public Country CountryName { get; set; } 
     }
 }

@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using StudentAdminPortalAPI.Repository;
 using StudentAdminPortalAPI.ViewModel;
+using System;
 using System.Threading.Tasks;
 
 namespace StudentAdminPortalAPI.Controllers
@@ -33,13 +34,21 @@ namespace StudentAdminPortalAPI.Controllers
         //[Route("GetListStudent")]
         public async Task<IActionResult> updateStudent([FromRoute] int id, [FromBody] updateStudentViewModel student )
         {
-            if (await _studentRepository.Exists(id))
+            try
             {
-                var updateStudent = _studentRepository.UpdateStudent(id, student);
-                if(updateStudent != null)
+                if (await _studentRepository.Exists(id))
                 {
-                    return Ok(updateStudent);
+                    var updateStudent = _studentRepository.UpdateStudent(id, student);
+                    if (updateStudent != null)
+                    {
+                        return Ok(updateStudent);
+                    }
                 }
+            }
+            catch (Exception)
+            {
+
+                throw;
             }
             return NotFound();
         }
@@ -64,10 +73,18 @@ namespace StudentAdminPortalAPI.Controllers
         public async Task<IActionResult> addStudent([FromBody] updateStudentViewModel student)
         {
 
-            var newStudent = await _studentRepository.InsertStudent(student);
-            if (newStudent != null)
+            try
             {
-                return Ok(newStudent);
+                var newStudent = await _studentRepository.InsertStudent(student);
+                if (newStudent != null)
+                {
+                    return Ok(newStudent);
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
             }
 
             return NotFound();

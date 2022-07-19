@@ -7,6 +7,6 @@ namespace StudentAdminPortalAPI.Model
         [Key]
         public int GenderId { get; set; }
         public string GenderName { get; set; }
-        public string GenderDesc { get; set; }
+        
     }
 }
