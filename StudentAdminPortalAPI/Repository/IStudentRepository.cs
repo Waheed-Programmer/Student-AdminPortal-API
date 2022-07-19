@@ -10,6 +10,7 @@ namespace StudentAdminPortalAPI.Repository
         Task<List<Student>> GetAllStudentAsync();
         Task<Student> GetStudent(int id);
         Task<List<Gender>> GetAllGenderAsync();
+        Task<List<Department>> GetAllDepartmentAsync();
         Task<bool> Exists(int id);
         Task<Student> UpdateStudent(int id, updateStudentViewModel student);
         Task<Student> InsertStudent(updateStudentViewModel student);

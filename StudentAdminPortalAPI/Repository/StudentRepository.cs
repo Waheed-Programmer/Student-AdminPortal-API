@@ -89,6 +89,11 @@ namespace StudentAdminPortalAPI.Repository
             return model;
 
         }
+
+        public async Task<List<Department>> GetAllDepartmentAsync()
+        {
+            return await _applicationDbContext.Departments.ToListAsync();
+        }
     }
     }
 
