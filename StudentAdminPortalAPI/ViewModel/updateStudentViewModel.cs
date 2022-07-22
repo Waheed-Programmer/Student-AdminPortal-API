@@ -1,4 +1,5 @@
 ﻿using StudentAdminPortalAPI.Model;
+using System;
 
 namespace StudentAdminPortalAPI.ViewModel
 {
@@ -8,7 +9,7 @@ namespace StudentAdminPortalAPI.ViewModel
         public string StudentName { get; set; }
         public string StudentEmail { get; set; }
         public string StudentContact { get; set; }
-        public string ProfileImg { get; set; }
+        public DateTime Date { get; set; } = DateTime.Now;
         public int GenderId { get; set; }
         public string GenderName { get; set; }
         public int DepartmentId { get; set; }

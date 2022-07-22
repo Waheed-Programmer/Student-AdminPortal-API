@@ -16,6 +16,29 @@ namespace StudentAdminPortalAPI.Controllers
         {
             _studentRepository = studentRepository;
         }
+
+        [HttpPost("[action]")]
+
+        public async Task<IActionResult> addStudent([FromBody] updateStudentViewModel student)
+        {
+
+            try
+            {
+                var newStudent = await _studentRepository.InsertStudent(student);
+                if (newStudent != null)
+                {
+                    return Ok(newStudent);
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+            return NotFound();
+        }
+
         [HttpGet("[action]")]
         //[Route("GetListStudent")]
         public async Task<IActionResult> GetListStudent()
@@ -68,26 +91,6 @@ namespace StudentAdminPortalAPI.Controllers
             return NotFound();
         }
 
-        [HttpPost("[action]")]
        
-        public async Task<IActionResult> addStudent([FromBody] updateStudentViewModel student)
-        {
-
-            try
-            {
-                var newStudent = await _studentRepository.InsertStudent(student);
-                if (newStudent != null)
-                {
-                    return Ok(newStudent);
-                }
-            }
-            catch (Exception)
-            {
-
-                throw;
-            }
-
-            return NotFound();
-        }
     }
 }

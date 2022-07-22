@@ -21,13 +21,13 @@ namespace StudentAdminPortalAPI.Repository
         public async Task<List<Student>> GetAllStudentAsync()
         {
             return await _applicationDbContext.Students
-                .Include(nameof(Gender)).Include(nameof(Department)).ToListAsync();
+                .Include(nameof(Gender)).Include(nameof(Department)).Include(nameof(Country)).ToListAsync();
         }
 
         public async Task<Student> GetStudent(int id)
         {
             return await _applicationDbContext.Students.Where(x=>x.StudentId==id)
-                .Include(nameof(Gender)).Include(nameof(Department)).FirstOrDefaultAsync();
+                .Include(nameof(Gender)).Include(nameof(Department)).Include(nameof(Country)).FirstOrDefaultAsync();
         }
         public async Task<List<Gender>> GetAllGenderAsync()
         {
@@ -84,6 +84,7 @@ namespace StudentAdminPortalAPI.Repository
             model.GenderId = student.GenderId;
             model.DepartmentId = student.DepartmentId;
             model.CountryId = student.CountryId;
+            model.Date = student.Date;
             await _applicationDbContext.Students.AddAsync(model);
             await _applicationDbContext.SaveChangesAsync();
             return model;
