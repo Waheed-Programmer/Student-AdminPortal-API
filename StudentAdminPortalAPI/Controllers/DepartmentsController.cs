@@ -9,17 +9,17 @@ namespace StudentAdminPortalAPI.Controllers
     [ApiController]
     public class DepartmentsController : ControllerBase
     {
-        private readonly IStudentRepository _studentRepository;
+        private readonly IDepartmentRepository _departmentRepository;
 
-        public DepartmentsController(IStudentRepository studentRepository)
+        public DepartmentsController(IDepartmentRepository departmentRepository)
         {
-            _studentRepository = studentRepository;
+            _departmentRepository = departmentRepository;
         }
 
         [HttpGet("[action]")]
         public async Task<IActionResult> GetListDepartment()
         {
-            return Ok(await _studentRepository.GetAllDepartmentAsync());
+            return Ok(await _departmentRepository.GetAllDepartmentAsync());
         }
     }
 }
