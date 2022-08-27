@@ -36,12 +36,19 @@ namespace StudentAdminPortalAPI.Repository
 
         public async Task<Department> InsertDepartment(Department d)
         {
-            Department model = new Department();
-            model.DepartmentName = d.DepartmentName;
-
-            await _applicationDbContext.Departments.AddAsync(model);
-            await _applicationDbContext.SaveChangesAsync();
-            return model;
+            var checkDepartment = await _applicationDbContext.Departments.FirstOrDefaultAsync(x=>x.DepartmentId==d.DepartmentId);
+            if (checkDepartment != null && checkDepartment.DepartmentId>0)
+            {
+                checkDepartment.DepartmentName = d.DepartmentName;
+                checkDepartment.DepartmentId = d.DepartmentId;
+                await _applicationDbContext.SaveChangesAsync();
+            }
+            else
+            {
+                 _applicationDbContext.Departments.Add(d);
+                await _applicationDbContext.SaveChangesAsync();
+            }
+            return checkDepartment;
         }
 
         public async Task<Department> UpdateDepartment(int id, Department d)

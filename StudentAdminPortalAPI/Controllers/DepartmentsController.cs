@@ -19,7 +19,7 @@ namespace StudentAdminPortalAPI.Controllers
         }
 
         [HttpGet("[action]")]
-        public async Task<IActionResult> GetListDepartment()
+        public async Task<IActionResult> getListDepartment()
         {
             return Ok(await _departmentRepository.GetAllDepartmentAsync());
         }
@@ -52,29 +52,7 @@ namespace StudentAdminPortalAPI.Controllers
             return Ok(await _departmentRepository.GetDepartment(id));
         }
 
-        [HttpPut("[action]/{id}")]
-        
-        public async Task<IActionResult> updateDepartment([FromRoute] int id, [FromBody] Department d)
-        {
-            try
-            {
-                if (await _departmentRepository.Exists(id))
-                {
-                    var updateDepartment = _departmentRepository.UpdateDepartment(id, d);
-                    if (updateDepartment != null)
-                    {
-                        return Ok(updateDepartment);
-                    }
-                }
-            }
-            catch (Exception)
-            {
-
-                throw;
-            }
-            return NotFound();
-        }
-
+       
 
     }
 }
