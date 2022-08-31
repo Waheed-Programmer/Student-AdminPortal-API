@@ -25,7 +25,7 @@ namespace StudentAdminPortalAPI.Controllers
         }
 
         [HttpPost("[action]")]
-        public async Task<IActionResult> addDepartment([FromBody] Country c)
+        public async Task<IActionResult> addCountry([FromBody] Country c)
         {
 
             try
