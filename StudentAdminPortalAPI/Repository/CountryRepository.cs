@@ -19,24 +19,36 @@ namespace StudentAdminPortalAPI.Repository
 
         public async Task<bool> Exists(int id)
         {
-            return await _applicationDbContext.Departments.AnyAsync(x => x.DepartmentId == id);
+            return await _applicationDbContext.Countries.AnyAsync(x => x.CountryId == id);
         }
 
         public async Task<List<Country>> GetAllCountryAsync()
         {
-            return await _applicationDbContext.Departments
+            return await _applicationDbContext.Countries
                .ToListAsync();
         }
 
         public async Task<Country> GetCountryById(int id)
         {
-            return await _applicationDbContext.Departments.Where(x => x.DepartmentId == id).
+            return await _applicationDbContext.Countries.Where(x => x.CountryId == id).
                 FirstOrDefaultAsync();
         }
 
-        public Task<Country> InsertCountry(Country c)
+        public async Task<Country> InsertCountry(Country c)
         {
-            throw new System.NotImplementedException();
+            var checkCountry = await _applicationDbContext.Countries.FirstOrDefaultAsync(x => x.CountryId == c.CountryId);
+            if (checkCountry != null && checkCountry.CountryId > 0)
+            {
+                checkCountry.CountryName = c.CountryName;
+                checkCountry.CountryId = c.CountryId;
+                await _applicationDbContext.SaveChangesAsync();
+            }
+            else
+            {
+                _applicationDbContext.Countries.Add(c);
+                await _applicationDbContext.SaveChangesAsync();
+            }
+            return checkCountry;
         }
     }
 }
